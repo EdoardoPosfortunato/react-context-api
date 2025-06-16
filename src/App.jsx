@@ -2,7 +2,7 @@ import { useState, useEffect, createContext } from 'react'
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 import PostPages from './pages/PostPages.jsx';
-import postContext from './context/Context';
+import { postContext, alertContext } from './context/Context';
 import axios from 'axios';
 
 
@@ -10,6 +10,7 @@ import axios from 'axios';
 function App() {
 
   const [cardList, setCardList] = useState([])
+  const [showAlert, setShowAlert] = useState(false)
 
   useEffect(() => {
     axios
@@ -20,19 +21,25 @@ function App() {
   }, [])
 
 
-  const postCard= {
+  const postCard = {
     cardList,
     setCardList
+  }
 
+  const Alert = {
+    showAlert,
+    setShowAlert
   }
 
 
   return (
 
     <>
-      <postContext.Provider value={ postCard }>
-        <PostPages />
-      </postContext.Provider>
+      <alertContext.Provider value={Alert}>
+        <postContext.Provider value={postCard}>
+          <PostPages />
+        </postContext.Provider>
+      </alertContext.Provider>
 
     </>
 

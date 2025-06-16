@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import postContext from '../context/Context';
+import { postContext } from '../context/Context';
 
 
 const Post = () => {
@@ -8,7 +8,7 @@ const Post = () => {
 
 
     return (
-        <div className="container ">
+        <div className="">
             <div className="d-flex flex-wrap my-4 gap-2 justify-content-center">
                 {cardList.map((curCharacters, index) => (
                     <div className="card col-3" key={index}>
